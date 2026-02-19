@@ -1,8 +1,13 @@
+"use client"
 import React from 'react'
 import Image from 'next/image';
 import landing from '../assets/landing.png'
+import { useAppDispatch } from "@/Redux/hooks";
+import { openModal } from "@/Redux/features/modalSlice";
 
 const Landing = () => {
+    const dispatch = useAppDispatch();
+    
   return (
     <div id='landing'>
       <div className="container">
@@ -20,7 +25,7 @@ const Landing = () => {
                 <br className="remove--tablet" />
                 and even people who don’t like to read.
               </div>
-              <button className="btn home__cta--btn">Login</button>
+              <button className="btn home__cta--btn" onClick={() => dispatch(openModal())}>Login</button>
             </div>
             <figure className="landing__image--mask">
               <Image src={landing} alt="landing" />

@@ -1,7 +1,13 @@
+"use client"
 import React from 'react'
 import { BsStarFill } from 'react-icons/bs';
+import { useAppDispatch } from "@/Redux/hooks";
+import { openModal } from "@/Redux/features/modalSlice";
+
 
 const Reviews = () => {
+    const dispatch = useAppDispatch()
+
   return (
     <div id="reviews">
       <div className="row">
@@ -80,7 +86,7 @@ const Reviews = () => {
             </div>
           </div>
           <div className="reviews__btn--wrapper">
-            <button className="btn home__cta--btn">Login</button>
+            <button className="btn home__cta--btn" onClick={() => dispatch(openModal())}>Login</button>
           </div>
         </div>
       </div>
