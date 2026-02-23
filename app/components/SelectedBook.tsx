@@ -19,7 +19,6 @@ const SelectedBook = () => {
         }
         if (isLoading) return <div>Loading...</div>;
         if (isError) return <div>Error: {isError}</div>;
-        console.log(selectedBook)
 
   return (
     
@@ -53,12 +52,7 @@ const SelectedBook = () => {
               </div>
             </div>
           </Link>
-          <div className={Styles.recommended}>
-            <h1 className={Styles.for_you__title}>Recommended for you</h1>
-            <h2 className={Styles.for_you__subtitle}>
-              We think you’ll like these
-            </h2>
-          </div>
+          
         </div>
       </div>}
           </div>

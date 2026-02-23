@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import "./styles/globals.css";
-import Nav from "./components/Nav";
-import Footer from "./components/Footer";
-import Modal from "./components/Modal";
 import StoreProvider from "./StoreProvider";
 
 export const metadata: Metadata = {

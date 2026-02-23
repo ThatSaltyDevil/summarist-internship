@@ -5,6 +5,8 @@ import Styles from '../styles/For_you.module.css'
 import Link from 'next/link'
 import { FaCirclePlay } from 'react-icons/fa6'
 import SelectedBook from '../components/SelectedBook'
+import RecommendedBooks from '../components/RecommendedBooks'
+import SuggestedBooks from '../components/SuggestedBooks'
 
 
 
@@ -17,6 +19,8 @@ const page = () => {
       <div className={Styles.wrapper}>
         <Search />
         <SelectedBook />
+        <RecommendedBooks />
+        <SuggestedBooks />
       </div>
     </div>
   );
