@@ -1,11 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import modalReducer from './features/modalSlice'
+import { booksApi } from "./features/apiSlice";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
         modal: modalReducer,
+        [booksApi.reducerPath]: booksApi.reducer
     },
+
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(booksApi.middleware)
   });
 };
 

@@ -10,7 +10,7 @@ const Nav = () => {
 
 
   return (
-    <>
+    <nav className='nav'>
       <div className="nav__wrapper">
         <figure className="nav__img--mask">
           <Image className="nav__img" src={logo} alt="logo" />
@@ -27,7 +27,7 @@ const Nav = () => {
           <li className="nav__list nav__list--mobile">Help</li>
         </ul>
       </div>
-    </>
+    </nav>
   );
 }
 

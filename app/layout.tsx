@@ -19,10 +19,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <StoreProvider>
-          <Nav />
-          <Modal />
+
           {children}
-          <Footer />
+          
         </StoreProvider>
       </body>
     </html>
