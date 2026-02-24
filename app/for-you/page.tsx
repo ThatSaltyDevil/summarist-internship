@@ -2,8 +2,6 @@
 import Sidebar from '../components/Sidebar'
 import Search from '../components/Search'
 import Styles from '../styles/For_you.module.css'
-import Link from 'next/link'
-import { FaCirclePlay } from 'react-icons/fa6'
 import SelectedBook from '../components/SelectedBook'
 import RecommendedBooks from '../components/RecommendedBooks'
 import SuggestedBooks from '../components/SuggestedBooks'

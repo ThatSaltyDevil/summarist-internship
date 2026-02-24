@@ -16,6 +16,7 @@ const RecommendedBooks = () => {
   }
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {isError}</div>;
+  console.log(sugBooks)
 
   return (
     <div className={Styles.row}>
@@ -27,6 +28,8 @@ const RecommendedBooks = () => {
       <div className={Styles.sug__wrapper}>
         {sugBooks.map((sugBooks: any) => (
           <Link href="" className={Styles.sug__link} key={sugBooks.id}>
+            {sugBooks.subscriptionRequired == true ? (<div className={Styles.book__pill}>Premium</div>):(<></>)}
+            
             <figure className={Styles.sug__image__wrapper}>
               <img
                 src={sugBooks.imageLink}

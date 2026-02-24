@@ -26,6 +26,11 @@ const RecommendedBooks = () => {
       <div className={Styles.rec__wrapper}>
         {recBooks.map((recBooks: any) => (
           <Link href="" className={Styles.rec__link} key={recBooks.id}>
+            {recBooks.subscriptionRequired == true ? (
+              <div className={Styles.book__pill}>Premium</div>
+            ) : (
+              <></>
+            )}
             <figure className={Styles.rec__image__wrapper}>
               <img
                 src={recBooks.imageLink}

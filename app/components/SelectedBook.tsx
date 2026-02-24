@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useGetSelectedBookQuery } from '@/Redux/features/apiSlice';
 import Styles from '../styles/For_you.module.css'
 import Link from 'next/link';
