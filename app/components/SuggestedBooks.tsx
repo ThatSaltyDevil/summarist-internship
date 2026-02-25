@@ -27,9 +27,17 @@ const RecommendedBooks = () => {
 
       <div className={Styles.sug__wrapper}>
         {sugBooks.map((sugBooks: any) => (
-          <Link href="" className={Styles.sug__link} key={sugBooks.id}>
-            {sugBooks.subscriptionRequired == true ? (<div className={Styles.book__pill}>Premium</div>):(<></>)}
-            
+          <Link
+            href={`/book/${sugBooks.id}`}
+            className={Styles.sug__link}
+            key={sugBooks.id}
+          >
+            {sugBooks.subscriptionRequired == true ? (
+              <div className={Styles.book__pill}>Premium</div>
+            ) : (
+              <></>
+            )}
+
             <figure className={Styles.sug__image__wrapper}>
               <img
                 src={sugBooks.imageLink}

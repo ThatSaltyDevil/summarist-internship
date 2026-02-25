@@ -17,7 +17,12 @@ export const booksApi = createApi({
     getSuggestedBooks: builder.query({
       query: () => "getBooks?status=suggested",
     }),
+
+    getBookByID: builder.query({
+      query: (id) => `getBook?id=${id}`,
+       
+    }),
   }),
 });
 
-export const {useGetSelectedBookQuery, useGetRecommendedBooksQuery, useGetSuggestedBooksQuery} = booksApi
+export const {useGetSelectedBookQuery, useGetRecommendedBooksQuery, useGetSuggestedBooksQuery, useGetBookByIDQuery} = booksApi

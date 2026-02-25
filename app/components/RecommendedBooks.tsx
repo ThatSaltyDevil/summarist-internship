@@ -25,7 +25,11 @@ const RecommendedBooks = () => {
 
       <div className={Styles.rec__wrapper}>
         {recBooks.map((recBooks: any) => (
-          <Link href="" className={Styles.rec__link} key={recBooks.id}>
+          <Link
+            href={`/book/${recBooks.id}`}
+            className={Styles.rec__link}
+            key={recBooks.id}
+          >
             {recBooks.subscriptionRequired == true ? (
               <div className={Styles.book__pill}>Premium</div>
             ) : (
