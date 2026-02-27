@@ -8,6 +8,7 @@ import { HiOutlineLightBulb } from 'react-icons/hi';
 import { BsBookmark } from 'react-icons/bs';
 import { useParams } from 'next/navigation';
 import { useGetBookByIDQuery } from '@/Redux/features/apiSlice';
+import Link from 'next/link';
 
 
 export default function Book({ initialId }: { initialId?: string}) {
@@ -17,7 +18,7 @@ export default function Book({ initialId }: { initialId?: string}) {
 
 if (isLoading) return <div>Loading...</div>;
 if (isError) return <div>Error loading product</div>;
-
+console.log(data)
   return (
     <div className={Styles.row}>
       <div className={Styles.container}>
@@ -32,8 +33,12 @@ if (isError) return <div>Error loading product</div>;
                   <div className={Styles.feature__icon__wrapper}>
                     <FaRegStar className={Styles.feature__icon} />
                   </div>
-                  <div className={Styles.book__rating}>{data.averageRating}</div>
-                  <div className={Styles.book__overall}>({data.totalRating} ratings)</div>
+                  <div className={Styles.book__rating}>
+                    {data.averageRating}
+                  </div>
+                  <div className={Styles.book__overall}>
+                    ({data.totalRating} ratings)
+                  </div>
                 </div>
                 <div className={Styles.book__feature}>
                   <div className={Styles.feature__icon__wrapper}>
@@ -51,19 +56,21 @@ if (isError) return <div>Error loading product</div>;
                   <div className={Styles.feature__icon__wrapper}>
                     <HiOutlineLightBulb className={Styles.feature__icon} />
                   </div>
-                  <div className={Styles.book__key_ideas}>{data.keyIdeas} key ideas</div>
+                  <div className={Styles.book__key_ideas}>
+                    {data.keyIdeas} key ideas
+                  </div>
                 </div>
               </div>
             </div>
             <div className={Styles.book__buttons}>
-              <button className={Styles.book__button}>
+              <Link className={Styles.book__button} href={`/player/${data.id}`}>
                 <LuBookOpenText className={Styles.book__button__icon} />
                 <div className={Styles.book__button__text}>Read</div>
-              </button>
-              <button className={Styles.book__button}>
+              </Link>
+              <Link className={Styles.book__button} href="">
                 <FiMic className={Styles.book__button__icon} />
                 <div className={Styles.book__button__text}>Listen</div>
-              </button>
+              </Link>
             </div>
             <div className={Styles.bookmark}>
               <div className={Styles.bookmark__icon__wrapper}>
@@ -76,12 +83,15 @@ if (isError) return <div>Error loading product</div>;
             </div>
             <div className={Styles.book__section__title}>What's it about?</div>
             <div className={Styles.book__tags__wrapper}>
-              <div className={Styles.book__tag}>Communication</div>
-              <div className={Styles.book__tag}>Technology</div>
+              {data.tags[0] && (
+                <div className={Styles.book__tag}>{data.tags[0]}</div>
+              )}
+              {data.tags[1] && (
+                <div className={Styles.book__tag}>{data.tags[1]}</div>
+              )}
+              
             </div>
-            <div className={Styles.book__description}>
-              {data.summary}
-            </div>
+            <div className={Styles.book__description}>{data.bookDescription}</div>
             <div className={Styles.book__section__title}>About the author</div>
             <div className={Styles.author__description}>
               {data.authorDescription}

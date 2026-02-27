@@ -21,8 +21,8 @@ const RecommendedBooks = () => {
   return (
     <div className={Styles.row}>
       <div className={Styles.suggested}>
-        <h1 className={Styles.for_you__title}>Recommended for you</h1>
-        <h2 className={Styles.for_you__subtitle}>We think you’ll like these</h2>
+        <h1 className={Styles.for_you__title}>Suggested Books</h1>
+        <h2 className={Styles.for_you__subtitle}>Browse those books</h2>
       </div>
 
       <div className={Styles.sug__wrapper}>
