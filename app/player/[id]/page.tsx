@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Styles from "../../styles/Book.module.css";
-import SidebarAlt from "../../components/SidebarAlt";
+import SidebarAlt from "../../components/SidebarAlt"
 import Search from "../../components/Search";
 import Player from "../../components/Player";
 

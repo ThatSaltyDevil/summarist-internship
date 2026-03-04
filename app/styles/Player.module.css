@@ -1,5 +1,5 @@
 .row {
-  max-width: 1070px;
+  max-width: 800px;
   width: 100%;
   margin: 0 auto;
   padding: 0 24px;
@@ -16,9 +16,9 @@
 
 .book__title {
   color: #032b41;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   font-weight: 600;
-  font-size: 32px;
+  font-size: 24px;
   border-bottom: 1px solid #e1e7ea;
   padding-bottom: 16px;
 }
@@ -28,96 +28,179 @@
 }
 
 .player__wrapper {
-    width: 100%;
-    height: 80px;
-    background-color:#032b41;
-    position: sticky;
-    bottom: 0;
-    left: 0;
-    z-index: 101;
+  width: 100%;
+  height: 80px;
+  background-color: #042330;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 101;
 }
 
+.player {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  margin: 0 40px;
+}
 
+.player__left {
+  gap: 16px;
+}
+
+.player__left,
+.player__center,
+.player__right {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+  width: 100%;
+}
+
+.player__center {
+    justify-content: center;
+}
+
+.player__book__image__wrapper {
+  display: flex;
+  max-width: 48px;
+}
+
+.book__image {
+  width: 100%;
+  height: 100%;
+}
+
+.player__text {
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+}
+
+.player__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.player__button {
+  cursor: pointer;
+  border-radius: 50%;
+  width: 36px;
+  height: 48px;
+}
+
+.player__button__play {
+  cursor: pointer;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+}
+
+.player__progress__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.player__progress__bar {
+  border-radius: 8px;
+  height: 4px;
+  width: 100%;
+  max-width: 300px;
+  cursor: pointer;
+}
+
+.player__time {
+  color: #fff;
+  font-size: 14px;
+}
 
 .sidebar {
-    background-color: #f7faf9;
-    width: 200px;
-    min-width: 200px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 92vh;
-    z-index: 100;
+  background-color: #f7faf9;
+  width: 200px;
+  min-width: 200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 100;
 }
 
 .sidebar__logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 160px;
-    height: 60px;
-    padding-top: 16px;
-    margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 160px;
+  height: 60px;
+  padding-top: 16px;
+  margin: 0 auto;
 }
 
 .sidebar__lists {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: calc(92vh - 60px);
-    padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 120px);
+  padding-bottom: 20px;
 }
 
 .sidebar__list_top {
-    flex: 1 1;
-    margin-top: 40px;
+  flex: 1 1;
+  margin-top: 40px;
 }
 
 .sidebar__link__wrapper {
-    display: flex;
-    align-items: center;
-    height: 56px;
-    color: #032b41;
-    margin: 8px auto;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  color: #032b41;
+  margin: 8px auto;
+  cursor: pointer;
 }
 
 .sidebar__link__wrapper__na {
-    display: flex;
-    align-items: center;
-    height: 56px;
-    color: #032b41;
-    margin: 0 auto;
-    cursor: not-allowed;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  color: #032b41;
+  margin: 0 auto;
+  cursor: not-allowed;
 }
 
 .sidebar__icon__wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
 }
 
 .sidebar__icon {
-    width: 24px;
-    height: 24px;
+  width: 24px;
+  height: 24px;
 }
 
 .sidebar__text {
-    font-size: 16px;
-    font-weight: 400;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .sidebar__tab__active {
-    width: 5px;
-    height: 100%;
-    background-color: #2bd97c;
-    margin-right: 16px;
+  width: 5px;
+  height: 100%;
+  background-color: #2bd97c;
+  margin-right: 16px;
 }
 
 .sidebar__tab__inactive {
-    width: 5px;
-    height: 100%;
-    background-color: transparent;
-    margin-right: 16px;
+  width: 5px;
+  height: 100%;
+  background-color: transparent;
+  margin-right: 16px;
 }

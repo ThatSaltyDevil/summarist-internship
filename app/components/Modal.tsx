@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import styles from "../styles/Modal.module.css";
 import { IoPerson } from "react-icons/io5";
 import google from "../assets/google.png";
@@ -8,11 +8,25 @@ import { LiaTimesSolid } from "react-icons/lia";
 import { closeModal, setModalMode } from "@/Redux/features/modalSlice";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import Link from "next/link";
+import { login, signup } from "../firebase/authFunctions"
+
 
 const Modal = () => {
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector((state: any) => state.modal.isOpen);
   const mode = useAppSelector((state : any) => state.modal.mode)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignup = async (email: string, password: string) => {
+    await signup(email, password);
+    dispatch(closeModal());
+  }
+
+  const handleLogin = async (email: string, password: string) => {
+    await login(email, password);
+    dispatch(closeModal());
+  }
 
   return (
     <div>
@@ -47,13 +61,15 @@ const Modal = () => {
                     className={styles.login__form_input}
                     type="text"
                     placeholder="Email Address"
+                    onChange={(event) => setEmail(event.target.value)}
                   ></input>
                   <input
                     className={styles.login__form_input}
                     type="password"
                     placeholder="Password"
+                    onChange={(event) => setPassword(event.target.value)}
                   ></input>
-                  <button className={styles.login__btn}>
+                  <button className={styles.login__btn} onClick={() => handleLogin(email, password)}>
                     <span>Login</span>
                   </button>
                 </form>
@@ -63,7 +79,7 @@ const Modal = () => {
               </div>
               <button
                 className={styles.switch__btn}
-                onClick={() => setModalMode("Signup")}
+                onClick={() => dispatch(setModalMode("Signup"))}
               >
                 Don't have an account?
               </button>
@@ -98,13 +114,15 @@ const Modal = () => {
                     className={styles.signup__form_input}
                     type="text"
                     placeholder="Email Address"
+                    onChange={(event) => setEmail(event.target.value)}
                   ></input>
                   <input
                     className={styles.signup__form_input}
                     type="password"
                     placeholder="Password"
+                    onChange={(event) => setPassword(event.target.value)}
                   ></input>
-                  <button className={styles.signup__btn}>
+                  <button className={styles.signup__btn} onClick={() => handleSignup(email, password)}>
                     <span>Sign up</span>
                   </button>
                 </form>
