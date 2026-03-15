@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import Styles from '../styles/For_you.module.css'
+import Styles from "../../styles/For_you.module.css"
 import Image from 'next/image';
 import LoginImage from "../assets/login.png";
 import { useAppDispatch } from '@/Redux/hooks';
