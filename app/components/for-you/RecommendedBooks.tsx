@@ -1,5 +1,5 @@
 import React from "react";
-import Styles from "../styles/For_you.module.css";
+import Styles from "../../styles/For_you.module.css";
 import Link from "next/link";
 import { useGetRecommendedBooksQuery } from "@/Redux/features/apiSlice";
 import { PiClockBold } from "react-icons/pi";

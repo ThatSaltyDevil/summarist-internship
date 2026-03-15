@@ -1,6 +1,6 @@
 import React from 'react'
 import { useGetSelectedBookQuery } from '@/Redux/features/apiSlice';
-import Styles from '../styles/For_you.module.css'
+import Styles from '../../styles/For_you.module.css'
 import Link from 'next/link';
 import { FaCirclePlay } from 'react-icons/fa6';
 

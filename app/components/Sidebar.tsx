@@ -10,8 +10,13 @@ import { SlSettings } from "react-icons/sl";
 import { FiHelpCircle } from "react-icons/fi";
 import { LuLogOut } from "react-icons/lu";
 import Link from "next/link";
+import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
+import { setSidebarMode } from "@/Redux/features/sidebarSlice";
 
 const Sidebar = () => {
+  const dispatch = useAppDispatch();
+  const mode = "For-You";
+  
   return (
     <div className={styles.sidebar}>
       <div className={styles.sidebar__logo}>
@@ -19,15 +24,33 @@ const Sidebar = () => {
       </div>
       <div className={styles.sidebar__lists}>
         <div className={styles.sidebar__list_top}>
-          <Link className={styles.sidebar__link__wrapper} href="/for-you">
-            <div className={styles.sidebar__tab__active}></div>
+          <Link
+            className={styles.sidebar__link__wrapper}
+            href="/for-you"
+            onClick={() => dispatch(setSidebarMode("For-You"))}
+          >
+            {mode === "For-You" ? (
+              <div className={styles.sidebar__tab__active}></div>
+            ) : (
+              <div className={styles.sidebar__tab__inactive}></div>
+            )}
+            <div className={styles.sidebar__tab}></div>
             <div className={styles.sidebar__icon__wrapper}>
               <AiOutlineHome className={styles.sidebar__icon} />
             </div>
             <div className={styles.sidebar__text}> For You</div>
           </Link>
 
-          <Link className={styles.sidebar__link__wrapper} href="/library">
+          <Link
+            className={styles.sidebar__link__wrapper}
+            href="/library"
+            onClick={() => dispatch(setSidebarMode("My-Library"))}
+          >
+            {/* {mode === "My-Library" ? (
+              <div className={styles.sidebar__tab__active}></div>
+            ) : (
+              <div className={styles.sidebar__tab__inactive}></div>
+            )} */}
             <div className={styles.sidebar__tab__inactive}></div>
             <div className={styles.sidebar__icon__wrapper}>
               <BsBookmark className={styles.sidebar__icon} />
@@ -52,7 +75,16 @@ const Sidebar = () => {
           </Link>
         </div>
         <div className={styles.sidebar__list_bottom}>
-          <Link className={styles.sidebar__link__wrapper} href="/settings">
+          <Link
+            className={styles.sidebar__link__wrapper}
+            href="/settings"
+            onClick={() => dispatch(setSidebarMode("Settings"))}
+          >
+            {/* {mode === "Settings" ? (
+              <div className={styles.sidebar__tab__active}></div>
+            ) : (
+              <div className={styles.sidebar__tab__inactive}></div>
+            )} */}
             <div className={styles.sidebar__tab__inactive}></div>
             <div className={styles.sidebar__icon__wrapper}>
               <SlSettings className={styles.sidebar__icon} />

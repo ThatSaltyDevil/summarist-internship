@@ -1,0 +1,273 @@
+.plan {
+  width: 100%;
+}
+
+.plan__header__wrapper {
+  text-align: center;
+  width: 100%;
+  padding-top: 48px;
+  margin-bottom: 20px;
+  background-color: #032b41;
+  border-bottom-right-radius: 16rem;
+  border-bottom-left-radius: 16rem;
+}
+
+.plan__header {
+  max-width: 1000px;
+  margin: 0 auto;
+  color: #fff;
+  padding: 0 24px;
+}
+
+.plan__title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 36px;
+  line-height: 1.2;
+}
+
+.plan__sub__title {
+  font-size: 20px;
+  margin-bottom: 32px;
+}
+
+.plan__img__mask {
+  display: flex;
+  justify-content: center;
+  max-width: 340px;
+  margin: 0 auto;
+  border-radius: 180px 180px 0 0;
+  overflow: hidden;
+}
+
+.plan__img__mask img {
+  width: 100%;
+  height: 100%;
+}
+
+.row {
+  max-width: 1070px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.container {
+  padding: 40px 0;
+  width: 100%;
+}
+
+.plan__features__wrapper {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  gap: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.plan__features {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.plan__features__icon {
+  display: flex;
+  justify-content: center;
+  color: #032b41;
+  margin-bottom: 12px;
+  width: 60px;
+  height: 60px;
+}
+
+.plan__features__text {
+  color: #394547;
+  line-height: 1.5;
+}
+
+.trial__button__wrapper {
+  background-color: #2bd97c;
+  color: #032b41;
+  width: 100%;
+  height: 40px;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 300px;
+}
+
+.plans__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.section__title {
+  font-size: 32px;
+  color: #032b41;
+  text-align: center;
+  margin-bottom: 32px;
+  font-weight: 700;
+}
+
+.plan__card__active {
+  border: 4px solid #2be080;
+}
+
+.plan__card {
+  border: 4px solid #bac8ce;
+}
+
+.plan__card,
+.plan__card__active {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  background-color: #f1f6f4;
+  border-radius: 4px;
+  cursor: pointer;
+  max-width: 680px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.plan__selection {
+  background: #fff;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  padding: 24px 0 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.plan__disclaimer {
+  font-size: 12px;
+  color: #6b757b;
+  text-align: center;
+}
+
+.plan__card__circle {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plan__card__dot__active {
+  background-color: #000;
+}
+
+.plan__card__dot__inactive {
+  background-color: transparent;
+}
+
+.plan__card__dot__active,
+.plan__card__dot__inactive {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.plan__card__dot__inactive {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: transparent;
+  border-radius: 50%;
+}
+
+.plan__card__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #032b41;
+  margin-bottom: 4px;
+}
+
+.plan__card__price {
+  font-size: 24px;
+  font-weight: 700;
+  color: #032b41;
+}
+
+.plan__card__text {
+  color: #6b757b;
+  font-size: 14px;
+}
+
+.plan__card__separator {
+  font-size: 14px;
+  color: #6b757b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 240px;
+  margin: 24px auto;
+}
+
+.separator__after,
+.separator__before {
+  width: 112px;
+  height: 1px;
+  background: #bac8ce;
+}
+
+.accordion__card {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+
+
+.accordion__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 24px 0;
+    gap: 8px;
+}
+
+.accordion__title {
+    font-weight: 500;
+    font-size: 24px;
+    position: relative;
+    margin-bottom: 0;
+    color: #032b41;
+    transition: .3s;
+}
+
+.accordion__icon {
+    width: 24px;
+    min-width: 24px;
+    height: 24px;
+    transition: transform .3s;
+}
+
+.accordion__body {
+    min-height: 1px;
+    padding-bottom: 24px;
+    color: #394547;
+    line-height: 1.5;
+}
+
+.collapse {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    transition: height .35s ease;
+}

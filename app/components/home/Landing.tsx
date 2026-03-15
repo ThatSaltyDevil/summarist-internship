@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import Image from 'next/image';
-import landing from '../assets/landing.png'
+import landing from '../../assets/landing.png'
 import { useAppDispatch } from "@/Redux/hooks";
 import { openModal } from "@/Redux/features/modalSlice";
 
