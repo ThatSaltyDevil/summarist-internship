@@ -8,11 +8,13 @@ interface AuthUser {
 interface AuthState {
   user: AuthUser | null;
   isLoading: boolean;
+  error: string | null;
 }
 
 const initialState: AuthState = {
   user: null,
   isLoading: true,
+  error: null,
 };
 
 const authSlice = createSlice({

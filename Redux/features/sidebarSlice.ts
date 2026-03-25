@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface SideBarState {
-  mode: "For-You" | "My-Library" | "Settings";
+  activeLink: string;
 }
 
 const initialState: SideBarState = {
-  mode: "For-You"
+  activeLink: "For-You",
 };
 
 const sidebarSlice = createSlice({
@@ -14,9 +14,9 @@ const sidebarSlice = createSlice({
   reducers: {
     setSidebarMode: (
       state,
-      action: PayloadAction<"For-You" | "My-Library" | "Settings">,
+      action: PayloadAction<string>,
     ) => {
-      state.mode = action.payload;
+      state.activeLink = action.payload;
     },
 
   },

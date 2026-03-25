@@ -1,5 +1,6 @@
 "use client";
 import React from 'react'
+import Styles from "../../styles/Home.module.css"
 import logo from '../../assets/logo.png'
 import Image from 'next/image';
 import { useAppDispatch } from '@/Redux/hooks';
@@ -10,24 +11,25 @@ const Nav = () => {
 
 
   return (
-    <nav className='nav'>
-      <div className="nav__wrapper">
-        <figure className="nav__img--mask">
-          <Image className="nav__img" src={logo} alt="logo" />
+    <>
+    <nav className={Styles.nav}>
+      <div className={Styles.nav__wrapper}>
+        <figure className={Styles.nav__img__mask}>
+          <Image className={Styles.nav__img} src={logo} alt="logo" />
         </figure>
-        <ul className="nav__list--wrapper">
+        <ul className={Styles.nav__list__wrapper}>
           <li
-            className="nav__list nav__list--login"
-            onClick={() => dispatch(openModal())}
-          >
+            className={Styles.nav__list + " " + Styles.nav__list__login}
+            onClick={() => dispatch(openModal())}>
             Login
           </li>
-          <li className="nav__list nav__list--mobile">About</li>
-          <li className="nav__list nav__list--mobile">Contact</li>
-          <li className="nav__list nav__list--mobile">Help</li>
+          <li className={Styles.nav__list}>About</li>
+          <li className={Styles.nav__list}>Contact</li>
+          <li className={Styles.nav__list}>Help</li>
         </ul>
       </div>
     </nav>
+    </>
   );
 }
 

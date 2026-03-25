@@ -1,12 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import modalReducer from './features/modalSlice'
 import { booksApi } from "./features/apiSlice";
+import sidebarReducer from "./features/sidebarSlice";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
         modal: modalReducer,
-        [booksApi.reducerPath]: booksApi.reducer
+        sidebar: sidebarReducer,
+        [booksApi.reducerPath]: booksApi.reducer,
+        
     },
 
     middleware: (getDefaultMiddleware) =>
