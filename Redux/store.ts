@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import modalReducer from './features/modalSlice'
 import { booksApi } from "./features/apiSlice";
 import sidebarReducer from "./features/sidebarSlice";
+import audioReducer from "./features/audioSlice";
 
 export const makeStore = () => {
   return configureStore({
@@ -9,7 +10,7 @@ export const makeStore = () => {
         modal: modalReducer,
         sidebar: sidebarReducer,
         [booksApi.reducerPath]: booksApi.reducer,
-        
+        audio: audioReducer, 
     },
 
     middleware: (getDefaultMiddleware) =>
