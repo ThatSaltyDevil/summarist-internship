@@ -1,14 +1,17 @@
 .row {
   max-width: 800px;
   width: 100%;
-  margin-bottom: 56px;
+  margin: auto auto 56px auto;
   padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
   padding: 40px 0;
   width: 100%;
-
+ 
 }
 
 .book__info {
@@ -219,4 +222,14 @@
     justify-content: space-between;
     height: calc(100vh - 120px);
     padding-bottom: 20px;
+}
+
+.text__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: auto;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
 }
