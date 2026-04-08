@@ -16,7 +16,7 @@ const RecommendedBooks = () => {
   }
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {isError}</div>;
-  console.log(sugBooks)
+
 
   return (
     <div className={Styles.row}>

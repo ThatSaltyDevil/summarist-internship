@@ -9,7 +9,6 @@ import {
     collection
  } from "firebase/firestore";
 import { auth, app } from "./init";
-import { useRouter } from "next/navigation";
 
 const db = getFirestore(app);
 
@@ -32,7 +31,6 @@ const signup = async (email: string, password: string) => {
 };
 
 const login = async (email: string, password: string) => {
-    const router = useRouter();
   try {
     const userCredential = await signInWithEmailAndPassword(
       auth,

@@ -8,58 +8,60 @@ import { LiaTimesSolid } from "react-icons/lia";
 import { closeModal, setModalMode } from "@/Redux/features/modalSlice";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import Link from "next/link";
-import { login, signup } from "../firebase/authFunctions"
+import { login, signup } from "../firebase/authFunctions";
 import { useRouter } from "next/navigation";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/init";
 import { setUser } from "@/Redux/features/authSlice";
 
-
 const Modal = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector((state: any) => state.modal.isOpen);
-  const mode = useAppSelector((state : any) => state.modal.mode)
+  const mode = useAppSelector((state: any) => state.modal.mode);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignup = async (email: string, password: string) => {
+  const handleSignup = async (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    email: string,
+    password: string,
+  ) => {
+    event.preventDefault();
     try {
       await signup(email, password);
       console.log("Signup successful!");
     } catch (error) {
       console.error("Error during signup:", error);
     }
-  }
+  };
 
-  const handleLogin = async (email: string, password: string) => {
+  const handleLogin = async (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    email: string,
+    password: string,
+  ) => {
+    event.preventDefault();
     try {
       await login(email, password);
-      console.log("Login successful!");
     } catch (error) {
       console.error("Error during login:", error);
     }
-  }
-
-  
+  };
 
   useEffect(() => {
-    console.log("Auth state listener set up");
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log("User is signed in:", user);
         dispatch(setUser({ uid: user.uid, email: user.email }));
         router.push("/for-you");
       } else {
-        console.log("No user is signed in");
         dispatch(setUser({ uid: "", email: null }));
       }
     });
-
+    dispatch(closeModal());
     return () => {
-      console.log("Auth state listener cleaned up");
       unsubscribe();
-    }
+    };
   }, [router, dispatch]);
 
   return (
@@ -103,8 +105,9 @@ const Modal = () => {
                     placeholder="Password"
                     onChange={(event) => setPassword(event.target.value)}
                   ></input>
-                  <button className={styles.login__btn} 
-                  onClick={() => handleLogin(email, password)}
+                  <button
+                    className={styles.login__btn}
+                    onClick={(event) => handleLogin(event, email, password)}
                   >
                     <span>Login</span>
                   </button>
@@ -158,7 +161,10 @@ const Modal = () => {
                     placeholder="Password"
                     onChange={(event) => setPassword(event.target.value)}
                   ></input>
-                  <button className={styles.signup__btn} onClick={() => handleSignup(email, password)}>
+                  <button
+                    className={styles.signup__btn}
+                    onClick={(event) => handleSignup(event, email, password)}
+                  >
                     <span>Sign up</span>
                   </button>
                 </form>
