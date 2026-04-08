@@ -12,11 +12,19 @@ import { LuLogOut } from "react-icons/lu";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import { setSidebarMode } from "@/Redux/features/sidebarSlice";
+import { auth } from "../firebase/init";
 
 const Sidebar = () => {
 
   const dispatch = useAppDispatch();
   const activeLink = useAppSelector((state) => state.sidebar.activeLink);
+    const handleLogout = async () => {
+      try {
+        await auth.signOut();
+      } catch (error) {
+        console.error("Error during logout:", error);
+      }
+    };
 
   return (
     <div className={styles.sidebar}>
@@ -116,7 +124,7 @@ const Sidebar = () => {
             <div className={styles.sidebar__icon__wrapper}>
               <LuLogOut className={styles.sidebar__icon} />
             </div>
-            <div className={styles.sidebar__text}>Logout</div>
+            <div className={styles.sidebar__text} onClick={() => handleLogout()}>Logout</div>
           </Link>
         </div>
       </div>

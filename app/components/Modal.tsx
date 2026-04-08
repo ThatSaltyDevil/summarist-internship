@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/Modal.module.css";
 import { IoPerson } from "react-icons/io5";
 import google from "../assets/google.png";
@@ -9,9 +9,14 @@ import { closeModal, setModalMode } from "@/Redux/features/modalSlice";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import Link from "next/link";
 import { login, signup } from "../firebase/authFunctions"
+import { useRouter } from "next/navigation";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase/init";
+import { setUser } from "@/Redux/features/authSlice";
 
 
 const Modal = () => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector((state: any) => state.modal.isOpen);
   const mode = useAppSelector((state : any) => state.modal.mode)
@@ -19,14 +24,43 @@ const Modal = () => {
   const [password, setPassword] = useState("");
 
   const handleSignup = async (email: string, password: string) => {
-    await signup(email, password);
-    dispatch(closeModal());
+    try {
+      await signup(email, password);
+      console.log("Signup successful!");
+    } catch (error) {
+      console.error("Error during signup:", error);
+    }
   }
 
   const handleLogin = async (email: string, password: string) => {
-    await login(email, password);
-    dispatch(closeModal());
+    try {
+      await login(email, password);
+      console.log("Login successful!");
+    } catch (error) {
+      console.error("Error during login:", error);
+    }
   }
+
+  
+
+  useEffect(() => {
+    console.log("Auth state listener set up");
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("User is signed in:", user);
+        dispatch(setUser({ uid: user.uid, email: user.email }));
+        router.push("/for-you");
+      } else {
+        console.log("No user is signed in");
+        dispatch(setUser({ uid: "", email: null }));
+      }
+    });
+
+    return () => {
+      console.log("Auth state listener cleaned up");
+      unsubscribe();
+    }
+  }, [router, dispatch]);
 
   return (
     <div>
@@ -69,7 +103,9 @@ const Modal = () => {
                     placeholder="Password"
                     onChange={(event) => setPassword(event.target.value)}
                   ></input>
-                  <button className={styles.login__btn} onClick={() => handleLogin(email, password)}>
+                  <button className={styles.login__btn} 
+                  onClick={() => handleLogin(email, password)}
+                  >
                     <span>Login</span>
                   </button>
                 </form>
