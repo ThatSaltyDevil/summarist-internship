@@ -21,6 +21,7 @@ const Sidebar = () => {
     const handleLogout = async () => {
       try {
         await auth.signOut();
+        dispatch(setSidebarMode("For-You"));
       } catch (error) {
         console.error("Error during logout:", error);
       }

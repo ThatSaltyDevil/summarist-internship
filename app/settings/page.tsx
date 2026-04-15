@@ -3,9 +3,10 @@ import React, { useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import Search from "../components/Search";
 import Styles from "../styles/For_you.module.css";
-import Login from "../components/settings/Login";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import  userCredentials  from "@/Redux/features/authSlice";
+import UserSettings from "../components/settings/UserSettings";
+
 
 
 
@@ -21,7 +22,8 @@ const page = () => {
       <Sidebar />
       <div className={Styles.wrapper}>
         <Search />
-        <Login />
+        <UserSettings />
+
       </div>
     </div>
   );

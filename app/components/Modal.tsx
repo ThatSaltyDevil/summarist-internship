@@ -8,7 +8,7 @@ import { LiaTimesSolid } from "react-icons/lia";
 import { closeModal, setModalMode } from "@/Redux/features/modalSlice";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import Link from "next/link";
-import { login, signup } from "../firebase/authFunctions";
+import { login, loginWithGoogle, signup } from "../firebase/authFunctions";
 import { useRouter } from "next/navigation";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/init";
@@ -49,6 +49,15 @@ const Modal = () => {
     }
   };
 
+  // const handleGoogleLogin = async () => {
+  //   try {
+  //     await loginWithGoogle();
+  //   } catch (error) {
+  //     console.error("Error during Google login:", error);
+  //   }
+  // };
+
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -83,7 +92,9 @@ const Modal = () => {
                 <div className={styles.modal__divider}>
                   <span className="divider__text"> or </span>
                 </div>
-                <button className={styles.google__btn}>
+                <button className={styles.google__btn} 
+                // onClick={() => handleGoogleLogin()}
+                >
                   <figure className={styles.google__btn_icon}>
                     <Image src={google} alt="" />
                   </figure>
