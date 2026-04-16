@@ -49,13 +49,13 @@ const Modal = () => {
     }
   };
 
-  // const handleGoogleLogin = async () => {
-  //   try {
-  //     await loginWithGoogle();
-  //   } catch (error) {
-  //     console.error("Error during Google login:", error);
-  //   }
-  // };
+  const handleGoogleLogin = async () => {
+    try {
+      await loginWithGoogle();
+    } catch (error) {
+      console.error("Error during Google login:", error);
+    }
+  };
 
 
   useEffect(() => {
@@ -93,7 +93,7 @@ const Modal = () => {
                   <span className="divider__text"> or </span>
                 </div>
                 <button className={styles.google__btn} 
-                // onClick={() => handleGoogleLogin()}
+                onClick={() => handleGoogleLogin()}
                 >
                   <figure className={styles.google__btn_icon}>
                     <Image src={google} alt="" />
