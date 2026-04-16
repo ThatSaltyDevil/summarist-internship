@@ -21,6 +21,8 @@ const Modal = () => {
   const mode = useAppSelector((state: any) => state.modal.mode);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSignup = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -28,11 +30,27 @@ const Modal = () => {
     password: string,
   ) => {
     event.preventDefault();
+    setIsLoading(true);
+    setError("");
+
     try {
-      await signup(email, password);
-      console.log("Signup successful!");
+      const result = await signup(email, password);
+      if (result.success) {
+        console.log("Signup successful!");
+        // The onAuthStateChanged listener will handle the redirect
+      } else {
+        setError(result.error || "Signup failed");
+        if (result.code === "auth/email-already-in-use-google") {
+          setError(
+            "This email is already associated with a Google account. Please use Google login.",
+          );
+        }
+      }
     } catch (error) {
       console.error("Error during signup:", error);
+      setError("An unexpected error occurred during signup.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -42,21 +60,54 @@ const Modal = () => {
     password: string,
   ) => {
     event.preventDefault();
+    setIsLoading(true);
+    setError("");
+
     try {
-      await login(email, password);
+      const result = await login(email, password);
+      if (result.success) {
+        console.log("Login successful!");
+        // The onAuthStateChanged listener will handle the redirect
+      } else {
+        setError(result.error || "Login failed");
+        if (result.code === "auth/account-exists-with-different-credential") {
+          setError(
+            "This email is associated with a Google account. Please use Google login or link your accounts first.",
+          );
+        }
+      }
     } catch (error) {
       console.error("Error during login:", error);
+      setError("An unexpected error occurred during login.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleGoogleLogin = async () => {
+    setIsLoading(true);
+    setError("");
+
     try {
-      await loginWithGoogle();
+      const result = await loginWithGoogle();
+      if (result.success) {
+        console.log("Google login successful!");
+        // The onAuthStateChanged listener will handle the redirect
+      } else {
+        setError(result.error || "Google login failed");
+        if (result.code === "auth/account-exists-with-different-credential") {
+          setError(
+            "This email is already associated with an account. Please sign in with your password first, then link your Google account.",
+          );
+        }
+      }
     } catch (error) {
       console.error("Error during Google login:", error);
+      setError("An unexpected error occurred during Google login.");
+    } finally {
+      setIsLoading(false);
     }
   };
-
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -92,35 +143,43 @@ const Modal = () => {
                 <div className={styles.modal__divider}>
                   <span className="divider__text"> or </span>
                 </div>
-                <button className={styles.google__btn} 
-                onClick={() => handleGoogleLogin()}
+                <button
+                  className={styles.google__btn}
+                  onClick={() => handleGoogleLogin()}
+                  disabled={isLoading}
                 >
                   <figure className={styles.google__btn_icon}>
                     <Image src={google} alt="" />
                   </figure>
-                  <div>Login with Google</div>
+                  <div>{isLoading ? "Connecting..." : "Login with Google"}</div>
                 </button>
                 <div className={styles.modal__divider}>
                   <span className="divider__text"> or </span>
                 </div>
                 <form className={styles.login__form}>
+                  {error && (
+                    <div className={styles.error__message}>{error}</div>
+                  )}
                   <input
                     className={styles.login__form_input}
                     type="text"
                     placeholder="Email Address"
                     onChange={(event) => setEmail(event.target.value)}
+                    disabled={isLoading}
                   ></input>
                   <input
                     className={styles.login__form_input}
                     type="password"
                     placeholder="Password"
                     onChange={(event) => setPassword(event.target.value)}
+                    disabled={isLoading}
                   ></input>
                   <button
                     className={styles.login__btn}
                     onClick={(event) => handleLogin(event, email, password)}
+                    disabled={isLoading || !email || !password}
                   >
-                    <span>Login</span>
+                    <span>{isLoading ? "Logging in..." : "Login"}</span>
                   </button>
                 </form>
               </div>
@@ -150,33 +209,45 @@ const Modal = () => {
             <div className={styles.modal}>
               <div className={styles.modal__content}>
                 <div className={styles.modal__title}>Sign up for Summarist</div>
-                <button className={styles.google__btn}>
+                <button
+                  className={styles.google__btn}
+                  onClick={handleGoogleLogin}
+                  disabled={isLoading}
+                >
                   <figure className={styles.google__btn_icon}>
                     <Image src={google} alt="" />
                   </figure>
-                  <div>Sign up with Google</div>
+                  <div>
+                    {isLoading ? "Connecting..." : "Sign up with Google"}
+                  </div>
                 </button>
                 <div className={styles.modal__divider}>
                   <span className="divider__text"> or </span>
                 </div>
                 <form className={styles.signup__form}>
+                  {error && (
+                    <div className={styles.error__message}>{error}</div>
+                  )}
                   <input
                     className={styles.signup__form_input}
                     type="text"
                     placeholder="Email Address"
                     onChange={(event) => setEmail(event.target.value)}
+                    disabled={isLoading}
                   ></input>
                   <input
                     className={styles.signup__form_input}
                     type="password"
                     placeholder="Password"
                     onChange={(event) => setPassword(event.target.value)}
+                    disabled={isLoading}
                   ></input>
                   <button
                     className={styles.signup__btn}
                     onClick={(event) => handleSignup(event, email, password)}
+                    disabled={isLoading || !email || !password}
                   >
-                    <span>Sign up</span>
+                    <span>{isLoading ? "Signing up..." : "Sign up"}</span>
                   </button>
                 </form>
               </div>
