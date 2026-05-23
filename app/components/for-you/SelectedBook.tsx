@@ -18,50 +18,48 @@ const SelectedBook = () => {
         if (data){
             selectedBook = data[0]
         }
-        if (isLoading) return <div>Loading...</div>;
-        if (isError) return <div>Error: {isError}</div>;
 
   return (
     <div className={Styles.row}>
-      {isLoading && <div>Loading </div>}
-
-      {!isLoading && (
-        <div className={Styles.container}>
-          <div className={Styles.for_you__wrapper}>
-            <h1 className={Styles.for_you__title}>Selected just for you</h1>
-            <Link
-              href={`/book/${selectedBook.id}`}
-              className={Styles.selected__book}
-            >
-              <h2 className={Styles.selected__subtitle}>
-                {selectedBook.subTitle}
-              </h2>
-              <div className={Styles.selected__book__line}></div>
-              <div className={Styles.selected__book__content}>
-                <div className={Styles.book__image__wrapper}>
+      <div className={Styles.container}>
+        <div className={Styles.for_you__wrapper}>
+          <h1 className={Styles.for_you__title}>Selected just for you</h1>
+          <Link
+            href={`/book/${selectedBook.id}`}
+            className={Styles.selected__book}
+          >
+            <h2 className={Styles.selected__subtitle}>
+              {selectedBook.subTitle}
+            </h2>
+            <div className={Styles.selected__book__line}></div>
+            <div className={Styles.selected__book__content}>
+              <div className={Styles.book__image__wrapper}>
+                {isLoading ? (
+                  <div className={Styles.book__image__loading}></div>
+                ) : (
                   <img
                     className={Styles.book__image}
                     src={selectedBook.imageLink}
                   ></img>
+                )}
+              </div>
+              <div className={Styles.selected__book__text}>
+                <div className={Styles.selected__book__title}>
+                  {selectedBook.title}
                 </div>
-                <div className={Styles.selected__book__text}>
-                  <div className={Styles.selected__book__title}>
-                    {selectedBook.title}
-                  </div>
-                  <div className={Styles.selected__book__author}>
-                    {selectedBook.author}
-                  </div>
-                  <div className={Styles.duration__wrapper}>
-                    <FaCirclePlay className={Styles.duration__icon} />
-                    <audio src={selectedBook.audioLink}></audio>
-                    <div className={Styles.duration}>0 mins 0 secs</div>
-                  </div>
+                <div className={Styles.selected__book__author}>
+                  {selectedBook.author}
+                </div>
+                <div className={Styles.duration__wrapper}>
+                  <FaCirclePlay className={Styles.duration__icon} />
+                  
+                  <div className={Styles.duration}>0 mins 0 secs</div>
                 </div>
               </div>
-            </Link>
-          </div>
+            </div>
+          </Link>
         </div>
-      )}
+      </div>
     </div>
   );
 }

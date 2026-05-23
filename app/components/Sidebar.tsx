@@ -50,7 +50,7 @@ const Sidebar = () => {
             <div className={styles.sidebar__icon__wrapper}>
               <AiOutlineHome className={styles.sidebar__icon} />
             </div>
-            <div className={styles.sidebar__text}> For You</div>
+            <div className={styles.sidebar__text}> For you</div>
           </Link>
 
           <Link

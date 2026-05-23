@@ -39,13 +39,13 @@
 .search__input {
     height: 40px;
     width: 100%;
-    padding: 0 16px;
+    padding: 16px;
     outline: none;
     background-color: #f1f6f4;
-    color: #042330;
+    color: black;
     border: 2px solid #e1e7ea;
     border-radius: 8px;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .search__icon__wrapper {

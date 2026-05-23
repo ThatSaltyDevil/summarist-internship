@@ -25,6 +25,7 @@ const signup = async (email: string, password: string) => {
     await addDoc(collection(db, "users"), {
       uid: user.uid,
       email: user.email,
+      subscription: "Basic",
     });
     console.log("User signed up:", userCredential.user);
     return { success: true, user: userCredential.user };

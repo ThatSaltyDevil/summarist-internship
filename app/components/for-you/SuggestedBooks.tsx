@@ -16,8 +16,6 @@ const RecommendedBooks = () => {
   }
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {isError}</div>;
-
-
   return (
     <div className={Styles.row}>
       <div className={Styles.suggested}>
@@ -39,11 +37,16 @@ const RecommendedBooks = () => {
             )}
 
             <figure className={Styles.sug__image__wrapper}>
+              {isLoading? (
+                  <div className={Styles.book__image__loading}></div>
+                ) : (
               <img
                 src={sugBooks.imageLink}
                 className={Styles.book__image}
-              ></img>
+              ></img>)}
+
             </figure>
+
             <div className={Styles.sug__title}>{sugBooks.title}</div>
             <div className={Styles.sug__author}>{sugBooks.author}</div>
             <div className={Styles.sug__subtitle}>{sugBooks.subTitle}</div>

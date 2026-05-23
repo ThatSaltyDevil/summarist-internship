@@ -24,7 +24,12 @@ console.log(data)
       <div className={Styles.container}>
         <div className={Styles.book__wrapper}>
           <div className={Styles.book__info}>
-            <div className={Styles.book__title}>{data.title}</div>
+            {data.subscriptionRequired == true ? (
+              <div className={Styles.book__title}>{data.title} (Premium)</div>
+            ) : (
+              <div className={Styles.book__title}>{data.title}</div>
+            )}
+
             <div className={Styles.book__author}>{data.author}</div>
             <div className={Styles.book__subtitle}>{data.subTitle}</div>
             <div className={Styles.book__features__wrapper}>
@@ -89,9 +94,10 @@ console.log(data)
               {data.tags[1] && (
                 <div className={Styles.book__tag}>{data.tags[1]}</div>
               )}
-              
             </div>
-            <div className={Styles.book__description}>{data.bookDescription}</div>
+            <div className={Styles.book__description}>
+              {data.bookDescription}
+            </div>
             <div className={Styles.book__section__title}>About the author</div>
             <div className={Styles.author__description}>
               {data.authorDescription}

@@ -37,7 +37,7 @@
   margin-bottom: 32px;
   font-weight: 700;
   border-bottom: 1px solid #e1e7ea;
-  padding-bottom: 16px;
+  padding-bottom: 12px;
 }
 
 .settings__login__wrapper {
@@ -68,4 +68,23 @@
   justify-content: center;
   min-width: 180px;
   cursor: pointer;
+}
+
+.upgrade__btn {
+  background-color: #2bd97c;
+  color: #032b41;
+  width: fit-content;
+  height: 40px;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  cursor: pointer;
+}
+
+.upgrade__btn:hover {
+  background-color: #27c46b;
 }
