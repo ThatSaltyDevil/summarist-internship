@@ -2,6 +2,7 @@ import React from "react";
 import Styles from "../../styles/Settings.module.css";
 import { auth } from "../../firebase/init";
 import Login from "./Login";
+import Link from "next/link";
 
 const UserSettings = () => {
   const { currentUser } = auth;
@@ -21,10 +22,9 @@ const UserSettings = () => {
                 Your Subscription Plan
               </div>
               <div className={Styles.settings__text}>Basic</div>
-              <button className={Styles.upgrade__btn}>
+              <Link href="/choose-plan" className={Styles.upgrade__btn}>
                 Upgrade to Premium
-
-              </button>
+              </Link>
             </div>
             <div className={Styles.setting__content}>
               <div className={Styles.settings__subtitle}>Email</div>

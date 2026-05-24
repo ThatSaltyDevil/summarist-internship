@@ -6,7 +6,7 @@ import { PiClockBold } from "react-icons/pi";
 import { PiStarBold } from "react-icons/pi";
 
 
-const RecommendedBooks = () => {
+const SuggestedBooks = () => {
   const { data, isLoading, isError } = useGetSuggestedBooksQuery([]);
 
   let sugBooks;
@@ -69,4 +69,4 @@ const RecommendedBooks = () => {
   );
 };
 
-export default RecommendedBooks;
+export default SuggestedBooks;
