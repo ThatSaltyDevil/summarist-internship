@@ -24,10 +24,12 @@
     font-size: 18px;
     font-weight: 700;
     color: #032b41;
+    line-height: 1.2;
 }
 
 .settings__text {
     color: #032b41;
+    line-height: 1.2;
 }
 
 .page__title {

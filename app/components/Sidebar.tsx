@@ -1,4 +1,5 @@
-import React from "react";
+
+import React, { useEffect } from "react";
 import Image from "next/image";
 import logo from "../assets/logo.png";
 import styles from "../styles/Sidebar.module.css";
@@ -14,10 +15,13 @@ import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import { setSidebarMode } from "@/Redux/features/sidebarSlice";
 import { auth } from "../firebase/init";
 
+
 const Sidebar = () => {
 
   const dispatch = useAppDispatch();
   const activeLink = useAppSelector((state) => state.sidebar.activeLink);
+
+  
     
   const handleLogout = async () => {
       try {
@@ -27,6 +31,9 @@ const Sidebar = () => {
         console.error("Error during logout:", error);
       }
     };
+
+
+
 
   return (
     <div className={styles.sidebar}>
