@@ -10,7 +10,7 @@ const SearchResults = () => {
   return (
     <div className="overlay">
       <ul>
-        Test
+        
       </ul>
     </div>
   );

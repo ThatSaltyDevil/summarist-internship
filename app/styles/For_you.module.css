@@ -144,10 +144,16 @@
   width: 100%;
 }
 
+.rec__link:hover,
+.sug__link:hover {
+  background-color: #f1f6f4;
+}
+
 .rec__image__wrapper,
 .sug__image__wrapper {
   width: 172px;
   height: 172px;
+  margin-bottom: 8px;
 }
 
 .rec__title,
@@ -156,6 +162,7 @@
   font-weight: 700;
   color: rgb(3, 43, 65);
   margin-bottom: 8px;
+  line-height: 1.2;
 }
 
 .rec__author,
@@ -164,6 +171,7 @@
   color: rgb(107, 117, 123);
   font-weight: 300;
   margin-bottom: 8px;
+  line-height: 1.2;
 }
 
 .rec__subtitle,
@@ -171,6 +179,7 @@
   font-size: 14px;
   color: rgb(57, 69, 71);
   margin-bottom: 8px;
+  line-height: 1.2;
 }
 
 .rec__details__wrapper,

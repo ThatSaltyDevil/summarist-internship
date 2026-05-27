@@ -6,10 +6,11 @@
   text-align: center;
   width: 100%;
   padding-top: 48px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   background-color: #032b41;
   border-bottom-right-radius: 16rem;
   border-bottom-left-radius: 16rem;
+  position: relative;
 }
 
 .plan__header {
@@ -58,12 +59,13 @@
 }
 
 .plan__features__wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   text-align: center;
   gap: 24px;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0 auto 56px;
 }
 
 .plan__features {
@@ -99,20 +101,16 @@
   align-items: center;
   justify-content: center;
   max-width: 300px;
+  cursor: pointer;
 }
 
-.plans__wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
+
 
 .section__title {
   font-size: 32px;
   color: #032b41;
   text-align: center;
-  margin: 0 auto;
+  margin-bottom: 32px;
   font-weight: 700;
 }
 
@@ -142,11 +140,11 @@
   position: sticky;
   bottom: 0;
   z-index: 1;
-  padding: 24px 0 40px 0;
+  padding: 32px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
   width: 100%;
 }
 
@@ -228,7 +226,6 @@
 
 .accordion__card {
     border-bottom: 1px solid #ddd;
-    margin-bottom: 8px;
     overflow: hidden;
 }
 
@@ -251,23 +248,33 @@
     transition: .3s;
 }
 
-.accordion__icon {
-    width: 24px;
-    min-width: 24px;
-    height: 24px;
-    transition: transform .3s;
-}
-
-.accordion__body {
-    min-height: 1px;
-    padding-bottom: 24px;
-    color: #394547;
-    line-height: 1.5;
-}
-
-.collapse {
+.accordion__body__collapsed {
     position: relative;
     height: 0;
     overflow: hidden;
     transition: height .35s ease;
 }
+
+.accordion__body {
+    position: relative;
+    height: 96px;
+    overflow: visible;
+    transition: height .35s ease;
+}
+
+.accordion__icon__collapsed {
+    transform: rotate(0deg);
+}
+
+.accordion__icon__expanded {
+    transform: rotate(180deg);
+}
+
+.accordion__icon__expanded,
+.accordion__icon__collapsed {
+  transition: transform .3s;
+  min-width: 20px;
+  min-height: 20px;
+}
+
+

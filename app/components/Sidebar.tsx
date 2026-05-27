@@ -18,7 +18,8 @@ const Sidebar = () => {
 
   const dispatch = useAppDispatch();
   const activeLink = useAppSelector((state) => state.sidebar.activeLink);
-    const handleLogout = async () => {
+    
+  const handleLogout = async () => {
       try {
         await auth.signOut();
         dispatch(setSidebarMode("For-You"));
@@ -30,7 +31,7 @@ const Sidebar = () => {
   return (
     <div className={styles.sidebar}>
       <div className={styles.sidebar__logo}>
-        <Image src={logo} alt="logo" />
+        <Image src={logo} alt="logo" className={styles.sidebar__logo_image} />
       </div>
       <div className={styles.sidebar__lists}>
         <div className={styles.sidebar__list_top}>

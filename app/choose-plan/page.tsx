@@ -9,8 +9,12 @@ const page = () => {
   return (
     <div>
       <Header />
-      <Plans />
-      <FAQ />
+      <div className={styles.row}>
+        <div className={styles.container}>
+          <Plans />
+          <FAQ />
+        </div>
+      </div>
       <Footer />
     </div>
   );

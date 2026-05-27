@@ -22,33 +22,7 @@ const Header = () => {
           </figure>
         </div>
       </div>
-      <div className={styles.row}>
-        <div className={styles.container}>
-          <div className={styles.plan__features__wrapper}>
-            <div className={styles.plan__features}>
-              <AiFillFileText className={styles.plan__features__icon} />
-              <div className={styles.plan__features__text}>
-                <strong>Key ideas in few min</strong> with many books to read
-              </div>
-            </div>
-            <div className={styles.plan__features}>
-              <RiPlantFill className={styles.plan__features__icon} />
-              <div className={styles.plan__features__text}>
-                <strong>3 million </strong> people growing with Summarist
-                everyday
-              </div>
-            </div>
-            <div className={styles.plan__features}>
-              <FaHandshake className={styles.plan__features__icon} />
-              <div className={styles.plan__features__text}>
-                <strong>Precise recommendations</strong> collections curated by
-                experts
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </div>
+        
     </div>
   );
 }
