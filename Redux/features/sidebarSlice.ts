@@ -23,5 +23,4 @@ const sidebarSlice = createSlice({
 });
 
 export const { setSidebarMode } = sidebarSlice.actions;
-
 export default sidebarSlice.reducer;

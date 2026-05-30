@@ -14,12 +14,18 @@ import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import { setSidebarMode } from "@/Redux/features/sidebarSlice";
 import { auth } from "../firebase/init";
+import { useRouter } from "next/router";
 
 
 const Sidebar = () => {
-
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const activeLink = useAppSelector((state) => state.sidebar.activeLink);
+
+  const handleLinkClick = (link: string) => {
+    dispatch(setSidebarMode(link));
+    router.push(link);
+  };
 
   
     
