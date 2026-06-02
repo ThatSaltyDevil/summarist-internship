@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Styles from "../../styles/Settings.module.css";
-import { auth } from "../../firebase/init";
+import { onAuthStateChanged, User} from "firebase/auth";
 import Login from "./Login";
 import Link from "next/link";
+import { auth } from "@/app/firebase/init";
 
 const UserSettings = () => {
-  const { currentUser } = auth;
-  console.log(currentUser);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [authLoaded, setAuthLoaded] = useState(false);
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+      setAuthLoaded(true);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  if (!authLoaded) return null;
   return (
     <div className={Styles.container}>
       <div className={Styles.row}>

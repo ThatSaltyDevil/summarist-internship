@@ -14,18 +14,17 @@ import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import { setSidebarMode } from "@/Redux/features/sidebarSlice";
 import { auth } from "../firebase/init";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 
 const Sidebar = () => {
-  const router = useRouter();
+  const pathname = usePathname();
   const dispatch = useAppDispatch();
-  const activeLink = useAppSelector((state) => state.sidebar.activeLink);
-
-  const handleLinkClick = (link: string) => {
-    dispatch(setSidebarMode(link));
-    router.push(link);
-  };
+  const activeLink = pathname.startsWith("/settings")
+    ? "Settings"
+    : pathname.startsWith("/library")
+      ? "My-Library"
+      : "For-You";
 
   
     
