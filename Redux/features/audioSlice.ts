@@ -1,20 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Track {
-  id: string;
-  url: string; 
-}
-
 interface AudioState {
+  url: string | null;
   isPlaying: boolean;
-  currentTrack: Track | null;
   duration: number;
   currentTime: number;
 }
 
 const initialState: AudioState = {
+  url: null,
   isPlaying: false,
-  currentTrack: null,
   duration: 0,
   currentTime: 0,
 };
@@ -23,31 +18,20 @@ const audioSlice = createSlice({
   name: "audio",
   initialState,
   reducers: {
-    play(state) {
-      state.isPlaying = true;
+    setAudio: (state, action: PayloadAction<string>) => {
+      state.url = action.payload;
+      state.isPlaying = false; 
     },
-    pause(state) {
-      state.isPlaying = false;
+    togglePlayPause: (state) => {
+      state.isPlaying = !state.isPlaying;
     },
-    setCurrentTrack(state, action: PayloadAction<Track>) {
-      state.currentTrack = action.payload;
-      state.currentTime = 0; 
-    },
-    setDuration(state, action: PayloadAction<number>) {
-      state.duration = action.payload; 
-    },
-    setCurrentTime(state, action: PayloadAction<number>) {
-      state.currentTime = action.payload; 
-    },
+
   },
 });
 
 export const {
-  play,
-  pause,
-  setCurrentTrack,
-  setDuration,
-  setCurrentTime,
+  setAudio,
+  togglePlayPause,
 } = audioSlice.actions;
 
 export default audioSlice.reducer;

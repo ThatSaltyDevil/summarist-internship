@@ -1,47 +1,61 @@
-
-import React, { use, useEffect } from "react";
+"use client";
+import React, { useEffect } from "react";
 import Styles from "../../styles/Player.module.css";
-import { MdForward10, MdPlayCircle, MdReplay10, MdPauseCircle } from "react-icons/md";
+import {
+  MdForward10,
+  MdPlayCircle,
+  MdReplay10,
+  MdPauseCircle,
+} from "react-icons/md";
+import { CiNoWaitingSign } from "react-icons/ci";
 import { useGetBookByIDQuery } from "@/Redux/features/apiSlice";
 import { useParams } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
-import { play, pause, setCurrentTrack } from "@/Redux/features/audioSlice";
+import { togglePlayPause, setAudio } from "@/Redux/features/audioSlice";
 
 const Controls = () => {
   const dispatch = useAppDispatch();
-  const { isPlaying, currentTrack } = useAppSelector(
-    (state: any) => state.audio,
-  );
-  const params = useParams<{ id: string, audioLink: string }>();
+  const { url, isPlaying } = useAppSelector((state: any) => state.audio);
+  const params = useParams<{ id: string }>();
   const { data, isLoading, isError } = useGetBookByIDQuery(params.id);
-  const track = {
-    id: params.id as string,
-    url: params.audioLink as string,
+  const audioRef = React.useRef<HTMLAudioElement | null>(null);
+  const audio = data.audioLink;
+
+  const handlePlayPause = () => {
+    if (isPlaying) {
+      audioRef.current?.pause();
+      dispatch(togglePlayPause());
+    } else {
+      audioRef.current?.play();
+      dispatch(togglePlayPause());
+    }
   };
-
-  const handlePlay=() => {
-    dispatch(play())
-  }
-
-  const handlePause=() => {
-    dispatch(pause())
-  }
   
-  const handleSetTrack = () => {
-    dispatch(setCurrentTrack(track))
-  }
-
+  useEffect(() => {
+    if (audio) {
+      dispatch(setAudio(audio));
+    }
+  }, [audio]);
 
   return (
     <div className={Styles.player__center}>
-      <audio src={track.url} />
+      <audio ref={audioRef} src={url} />
       <div className={Styles.player__controls}>
         <MdReplay10 className={Styles.player__button} />
-        {isPlaying ? (
-          <MdPauseCircle className={Styles.player__button__play} onClick={handlePause} />
+        {isLoading && <CiNoWaitingSign className={Styles.player__button} />}
+
+        {isPlaying && isLoading === false ? (
+          <MdPauseCircle
+            className={Styles.player__button__play}
+            onClick={handlePlayPause}
+          />
         ) : (
-          <MdPlayCircle className={Styles.player__button__play} onClick={handlePlay} />
+          <MdPlayCircle
+            className={Styles.player__button__play}
+            onClick={handlePlayPause}
+          />
         )}
+
         <MdForward10 className={Styles.player__button} />
       </div>
     </div>

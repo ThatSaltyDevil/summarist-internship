@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import StoreProvider from "./StoreProvider";
 import { AuthProvider } from "./components/AuthProvider";
-import { AudioPlayerProvider } from "./context/audio-player-context";
 import "./styles/globals.css";
 export const metadata: Metadata = {
   title: "Summarist",
@@ -18,9 +17,9 @@ export default function RootLayout({
       <body>
         <StoreProvider>
           <AuthProvider>
-              <AudioPlayerProvider>
+              
             {children}
-              </AudioPlayerProvider>
+              
           </AuthProvider>
         </StoreProvider>
       </body>

@@ -9,6 +9,8 @@ const TrackInfo = () => {
     
       if (isLoading) return <div>Loading...</div>;
       if (isError) return <div>Error loading product</div>;
+
+
   return (
     <div className={Styles.player__left}>
       <div className={Styles.player__book__image__wrapper}>

@@ -16,7 +16,7 @@ export default function player({ initialId }: { initialId?: string }) {
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error loading product</div>;
-
+  
   return (
     <div>
       <SidebarAlt />
