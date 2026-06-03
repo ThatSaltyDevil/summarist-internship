@@ -11,7 +11,7 @@ import { CiNoWaitingSign } from "react-icons/ci";
 import { useGetBookByIDQuery } from "@/Redux/features/apiSlice";
 import { useParams } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
-import { togglePlayPause, setAudio } from "@/Redux/features/audioSlice";
+import { togglePlayPause, setAudio, setDuration } from "@/Redux/features/audioSlice";
 
 const Controls = () => {
   const dispatch = useAppDispatch();
@@ -19,8 +19,7 @@ const Controls = () => {
   const params = useParams<{ id: string }>();
   const { data, isLoading, isError } = useGetBookByIDQuery(params.id);
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
-  const audio = data.audioLink;
-  const [duration, setDuration] = useState<number>(0);
+  const audioLink = data.audioLink;
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -33,29 +32,17 @@ const Controls = () => {
   };
 
   useEffect(() => {
-    if (audio) {
-      dispatch(setAudio(audio));
+    const audio = new Audio(audioLink);
+    audio.addEventListener("loadedmetadata", () => {
+      dispatch(setDuration(audio.duration));
+      
+    });
+    if (audioLink) {
+      dispatch(setAudio(audioLink));
+      console.log("Audio URL set to:", audioLink);
     }
-  }, [audio]);
 
-  useEffect(() => {
-    const audioElement = audioRef.current;
-
-    if (audioElement) {
-      const handleLoadedMetadata = () => {
-        setDuration(audioElement.duration); 
-      };
-
-      audioElement.addEventListener("loadedmetadata", handleLoadedMetadata);
-
-      return () => {
-        audioElement.removeEventListener(
-          "loadedmetadata",
-          handleLoadedMetadata,
-        );
-      };
-    }
-  }, [audio]);
+  }, [audioLink, dispatch]);
 
   return (
     <div className={Styles.player__center}>

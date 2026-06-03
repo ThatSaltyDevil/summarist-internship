@@ -21,9 +21,16 @@ const audioSlice = createSlice({
     setAudio: (state, action: PayloadAction<string>) => {
       state.url = action.payload;
       state.isPlaying = false; 
+      state.currentTime = action.payload ? state.currentTime : 0;
     },
     togglePlayPause: (state) => {
       state.isPlaying = !state.isPlaying;
+    },
+      setDuration: (state, action: PayloadAction<number>) => {
+      state.duration = action.payload;
+    },
+    setCurrentTime: (state, action: PayloadAction<number>) => {
+      state.currentTime = action.payload;
     },
 
   },
@@ -32,6 +39,8 @@ const audioSlice = createSlice({
 export const {
   setAudio,
   togglePlayPause,
+  setDuration,
+  setCurrentTime
 } = audioSlice.actions;
 
 export default audioSlice.reducer;

@@ -6,7 +6,7 @@ import Styles from "../../styles/Player.module.css";
 
 
 const AudioPlayer = () => {
-
+  
   return (
     <div className={Styles.player__wrapper}>
       <div className={Styles.player}>
