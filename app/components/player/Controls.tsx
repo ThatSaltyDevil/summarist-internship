@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Styles from "../../styles/Player.module.css";
 import {
   MdForward10,
@@ -20,6 +20,7 @@ const Controls = () => {
   const { data, isLoading, isError } = useGetBookByIDQuery(params.id);
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
   const audio = data.audioLink;
+  const [duration, setDuration] = useState<number>(0);
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -30,10 +31,29 @@ const Controls = () => {
       dispatch(togglePlayPause());
     }
   };
-  
+
   useEffect(() => {
     if (audio) {
       dispatch(setAudio(audio));
+    }
+  }, [audio]);
+
+  useEffect(() => {
+    const audioElement = audioRef.current;
+
+    if (audioElement) {
+      const handleLoadedMetadata = () => {
+        setDuration(audioElement.duration); 
+      };
+
+      audioElement.addEventListener("loadedmetadata", handleLoadedMetadata);
+
+      return () => {
+        audioElement.removeEventListener(
+          "loadedmetadata",
+          handleLoadedMetadata,
+        );
+      };
     }
   }, [audio]);
 
