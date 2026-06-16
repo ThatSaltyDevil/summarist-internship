@@ -13,20 +13,23 @@ import { useParams } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import { togglePlayPause, setAudio, setDuration } from "@/Redux/features/audioSlice";
 
-const Controls = () => {
+interface ControlsProps {
+  controlsRef: React.RefObject<HTMLAudioElement>;
+}
+
+const Controls: React.FC<ControlsProps> = ({ controlsRef }) => {
   const dispatch = useAppDispatch();
   const { url, isPlaying } = useAppSelector((state: any) => state.audio);
   const params = useParams<{ id: string }>();
   const { data, isLoading, isError } = useGetBookByIDQuery(params.id);
-  const audioRef = React.useRef<HTMLAudioElement | null>(null);
   const audioLink = data.audioLink;
 
   const handlePlayPause = () => {
     if (isPlaying) {
-      audioRef.current?.pause();
+      controlsRef.current?.pause();
       dispatch(togglePlayPause());
     } else {
-      audioRef.current?.play();
+      controlsRef.current?.play();
       dispatch(togglePlayPause());
     }
   };
@@ -46,7 +49,7 @@ const Controls = () => {
 
   return (
     <div className={Styles.player__center}>
-      <audio ref={audioRef} src={url} />
+      <audio ref={controlsRef} src={url} />
       <div className={Styles.player__controls}>
         <MdReplay10 className={Styles.player__button} />
         {isLoading && <CiNoWaitingSign className={Styles.player__button} />}

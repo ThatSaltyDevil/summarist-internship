@@ -119,6 +119,7 @@
   width: 100%;
   max-width: 300px;
   cursor: pointer;
+   --range-progress: 0;
 }
 
 .player__time {

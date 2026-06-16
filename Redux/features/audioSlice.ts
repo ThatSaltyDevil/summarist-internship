@@ -26,7 +26,7 @@ const audioSlice = createSlice({
     togglePlayPause: (state) => {
       state.isPlaying = !state.isPlaying;
     },
-      setDuration: (state, action: PayloadAction<number>) => {
+    setDuration: (state, action: PayloadAction<number>) => {
       state.duration = action.payload;
     },
     setCurrentTime: (state, action: PayloadAction<number>) => {
