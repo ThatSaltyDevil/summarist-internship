@@ -54,7 +54,6 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ progressBarRef }) => {
   
   return (
     <div className={Styles.player__right}>
-      <audio ref={progressBarRef} onTimeUpdate={handleTimeUpdate} onLoadedMetadata={handleLoadedMetadata} />
       <div className={Styles.player__progress__wrapper}>
         <div className={Styles.player__time}>{formatTime(currentTime)}</div>
         <input 

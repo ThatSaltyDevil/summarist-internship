@@ -22,7 +22,7 @@ const Controls: React.FC<ControlsProps> = ({ controlsRef }) => {
   const { url, isPlaying } = useAppSelector((state: any) => state.audio);
   const params = useParams<{ id: string }>();
   const { data, isLoading, isError } = useGetBookByIDQuery(params.id);
-  const audioLink = data.audioLink;
+  const audioLink = data?.audioLink;
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -31,6 +31,20 @@ const Controls: React.FC<ControlsProps> = ({ controlsRef }) => {
     } else {
       controlsRef.current?.play();
       dispatch(togglePlayPause());
+    }
+  };
+
+  const handleForward10 = () => {
+    if (controlsRef.current) {
+      const newTime = Math.min(controlsRef.current.currentTime + 10, controlsRef.current.duration);
+      controlsRef.current.currentTime = newTime;
+    }
+  };
+
+  const handleBackward10 = () => {
+    if (controlsRef.current) {
+      const newTime = Math.max(controlsRef.current.currentTime - 10, 0);
+      controlsRef.current.currentTime = newTime;
     }
   };
 
@@ -46,12 +60,14 @@ const Controls: React.FC<ControlsProps> = ({ controlsRef }) => {
     }
 
   }, [audioLink, dispatch]);
+  
 
   return (
     <div className={Styles.player__center}>
-      <audio ref={controlsRef} src={url} />
       <div className={Styles.player__controls}>
-        <MdReplay10 className={Styles.player__button} />
+        <button onClick={handleBackward10}>
+          <MdReplay10 className={Styles.player__button} />
+        </button>
         {isLoading && <CiNoWaitingSign className={Styles.player__button} />}
 
         {isPlaying && isLoading === false ? (
@@ -65,8 +81,9 @@ const Controls: React.FC<ControlsProps> = ({ controlsRef }) => {
             onClick={handlePlayPause}
           />
         )}
-
-        <MdForward10 className={Styles.player__button} />
+        <button onClick={handleForward10}>
+          <MdForward10 className={Styles.player__button} />
+        </button>
       </div>
     </div>
   );
